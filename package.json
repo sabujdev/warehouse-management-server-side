@@ -1,5 +1,28 @@
 {
   "dependencies": {
-    "init": "^0.1.2"
-  }
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "init": "^0.1.2",
+    "mongodb": "^4.5.0"
+  },
+  "name": "warehouse-management-server-side-sabujmahonto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-SabujMahonto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-SabujMahonto/issues"
+  },
+  "homepage": "https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-SabujMahonto#readme",
+  "description": ""
 }
