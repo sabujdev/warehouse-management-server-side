@@ -23,16 +23,18 @@ async function run() {
   try {
     await client.connect();
     const serviceCollection = client.db("AllItem").collection("product");
+    const orderCollection = client.db('AllItem').collection('order');
     // get request
-    // http://localhost:5000/products
+    // http://localhost:5000/product
 
-    app.get("/products", async (req, res) => {
+    app.get("/product", async (req, res) => {
       const query = {};
       const cursor = serviceCollection.find(query);
       const services = await cursor.toArray();
       res.send(services);
     });
-
+        // product details by Id 
+    // http://localhost:5000/product/627152e4a2e9951a76035e9c
     app.get("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -40,6 +42,7 @@ async function run() {
       res.send(service);
     });
 
+    // http://localhost:5000/product
     // POST
     app.post("/product", async (req, res) => {
       const newService = req.body;
@@ -47,6 +50,7 @@ async function run() {
       res.send(result);
     });
 
+    http://localhost:5000/product/627152e4a2e9951a76035e66
     // DELETE
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
@@ -54,6 +58,13 @@ async function run() {
       const result = await serviceCollection.deleteOne(query);
       res.send(result);
     });
+
+    // Order collection Api 
+    app.post("/order", async(req,res)=>{
+      const order = req.body;
+      const result = await orderCollection.insertOne(order);
+      res.send(result);
+    })
   } finally {
     // await client.close();
   }
