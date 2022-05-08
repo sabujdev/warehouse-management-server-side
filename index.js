@@ -41,14 +41,14 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    const orderCollection = client.db("AllItem").collection("product");
+    const productCollection = client.db("AllItem").collection("product");
     const orderCollection = client.db('AllItem').collection('order');
     // get request
     // http://localhost:5000/product
 
     app.get("/product", async (req, res) => {
       const query = {};
-      const cursor = orderCollection.find(query);
+      const cursor = productCollection.find(query);
       const product = await cursor.toArray();
       res.send(product);
     });
@@ -57,7 +57,7 @@ async function run() {
     app.get("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
-      const product = await orderCollection.findOne(query);
+      const product = await productCollection.findOne(query);
       res.send(product);
     });
 
@@ -65,7 +65,7 @@ async function run() {
     // POST
     app.post("/product", async (req, res) => {
       const newProduct = req.body;
-      const result = await orderCollection.insertOne(newProduct);
+      const result = await productCollection.insertOne(newProduct);
       res.send(result);
     });
 
@@ -74,7 +74,7 @@ async function run() {
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
-      const result = await orderCollection.deleteOne(query);
+      const result = await productCollection.deleteOne(query);
       res.send(result);
     });
 
@@ -87,7 +87,7 @@ async function run() {
       const email = req.query.email;
       if (email === decodedEmail) {
           const query = { email: email };
-          const cursor = orderCollection.find(query);
+          const cursor = productCollection.find(query);
           const orders = await cursor.toArray();
           res.send(orders);
       }
@@ -99,7 +99,7 @@ async function run() {
     // Post 
     app.post("/order", async(req,res)=>{
       const order = req.body;
-      const result = await orderCollection.insertOne(order);
+      const result = await productCollection.insertOne(order);
       res.send(result);
     })
 
