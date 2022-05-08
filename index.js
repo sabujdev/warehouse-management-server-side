@@ -122,7 +122,7 @@ run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("Running  Server");
-});he
+})
 
 app.listen(port, () => {
   console.log("Listening to port", port);
