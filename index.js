@@ -41,31 +41,31 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    const serviceCollection = client.db("AllItem").collection("product");
+    const orderCollection = client.db("AllItem").collection("product");
     const orderCollection = client.db('AllItem').collection('order');
     // get request
     // http://localhost:5000/product
 
     app.get("/product", async (req, res) => {
       const query = {};
-      const cursor = serviceCollection.find(query);
-      const services = await cursor.toArray();
-      res.send(services);
+      const cursor = orderCollection.find(query);
+      const product = await cursor.toArray();
+      res.send(product);
     });
         // product details by Id 
     // http://localhost:5000/product/627152e4a2e9951a76035e9c
     app.get("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
-      const service = await serviceCollection.findOne(query);
-      res.send(service);
+      const product = await orderCollection.findOne(query);
+      res.send(product);
     });
 
     // http://localhost:5000/product
     // POST
     app.post("/product", async (req, res) => {
-      const newService = req.body;
-      const result = await serviceCollection.insertOne(newService);
+      const newProduct = req.body;
+      const result = await orderCollection.insertOne(newProduct);
       res.send(result);
     });
 
@@ -74,7 +74,7 @@ async function run() {
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
-      const result = await serviceCollection.deleteOne(query);
+      const result = await orderCollection.deleteOne(query);
       res.send(result);
     });
 
@@ -127,4 +127,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log("Listening to port", port);
 });
-
