@@ -87,7 +87,7 @@ async function run() {
       const email = req.query.email;
       if (email === decodedEmail) {
           const query = { email: email };
-          const cursor = productCollection.find(query);
+          const cursor = orderCollection.find(query);
           const orders = await cursor.toArray();
           res.send(orders);
       }
@@ -99,7 +99,7 @@ async function run() {
     // Post 
     app.post("/order", async(req,res)=>{
       const order = req.body;
-      const result = await productCollection.insertOne(order);
+      const result = await orderCollection.insertOne(order);
       res.send(result);
     })
 
@@ -121,7 +121,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Running  Server");
+  res.send("Running Server");
 })
 
 app.listen(port, () => {
