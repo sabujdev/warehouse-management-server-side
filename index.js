@@ -69,7 +69,7 @@ async function run() {
       res.send(result);
     });
 
-    http://localhost:5000/product/627152e4a2e9951a76035e66
+    // http://localhost:5000/product/627152e4a2e9951a76035e66
     // DELETE
     app.delete("/product/:id", async (req, res) => {
       const id = req.params.id;
